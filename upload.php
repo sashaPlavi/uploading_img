@@ -1,5 +1,5 @@
 <?php
-
+include_once './inc/db.php';
 
 
 if (isset($_POST['submit'])) {
@@ -16,25 +16,41 @@ if (isset($_POST['submit'])) {
   $fileExt = explode('.', $fileName);
   $fileTrueExt = strtolower(end($fileExt));
 
+  $image = $_FILES["file"]['tmp_name'];
+  $imgContent = addslashes(file_get_contents($image));
+  // print_r($imgContent);
+
   $alowed = array('jpeg', 'jpg', 'png', 'pdf');
 
   if (in_array($fileTrueExt, $alowed)) {
 
     if ($fileError === 0) {
       if ($fileSize < 100000) {
-        $fileNameNew = uniqid('', true) . "." . $fileTrueExt;
-        $fileDestination = "uploads/" . $fileNameNew;
-        var_dump($fileDestination);
-        echo 'blalalalalalal';
-        move_uploaded_file($fileTmpName, $fileDestination);
-        header("Location:index.php?uploadsucces");
+        // $fileNameNew = uniqid('', true) . "." . $fileTrueExt;
+        // $fileDestination = "uploads/" . $fileNameNew;
+        // var_dump($fileDestination);
+        // echo 'blalalalalalal';
+        // move_uploaded_file($fileTmpName, $fileDestination);
+        // header("Location:index.php?uploadsucces");
+
+        $insert = $db->query("INSERT into my_images (image, uploaded) VALUES ('$imgContent', NOW())");
+
+        if ($insert) {
+          $status = 'success';
+          $statusMsg = "File uploaded successfully.";
+          header("Location:view.php");
+        } else {
+          $statusMsg = "File upload failed, please try again.";
+        }
       } else {
-        echo 'file is to big';
+        $statusMsg = 'file is to big';
       }
     } else {
-      echo "there was an error uploading a photo";
+      $statusMsg = "there was an error uploading a photo";
     }
   } else {
-    echo 'you can not upload files of this type';
+    $statusMsg = 'you can not upload files of this type';
   }
+  echo $statusMsg;
 }
+//<a href="./view.php">go to the galery</a>

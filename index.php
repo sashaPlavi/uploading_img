@@ -1,7 +1,7 @@
 <?php
-include_once './inc/db.php';
-$images = $mysqli->query("SELECT * FROM my_images");
+//include_once './inc/db.php';
 
+//$images = $db->query("SELECT image FROM images ORDER BY uploaded DESC");
 
 
 ?>
@@ -17,9 +17,9 @@ $images = $mysqli->query("SELECT * FROM my_images");
 
 <body>
   <?php
-  while ($data = $images->fetch_assoc()) {
-    print_r($data);
-  }
+  //while ($data = $images->fetch_assoc()) {
+  //   print_r($data);
+  // }
   ?>
   <form action="upload.php" method="post" enctype="multipart/form-data">
 
