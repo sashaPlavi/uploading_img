@@ -17,6 +17,7 @@ if (isset($_POST['submit'])) {
   $fileTrueExt = strtolower(end($fileExt));
 
   $image = $_FILES["file"]['tmp_name'];
+  //img to string
   $imgContent = addslashes(file_get_contents($image));
   // print_r($imgContent);
 
