@@ -3,6 +3,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <title>Uploading images</title>
   <style type="text/css">
@@ -16,6 +18,15 @@
 
     form {
       padding: 5rem;
+    }
+
+    .galery_container {
+      padding: 3rem;
+      display: grid;
+      grid-gap: 20px 35px;
+
+      grid-template-columns: repeat(3, 1fr);
+
     }
   </style>
 </head>
