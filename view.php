@@ -1,9 +1,10 @@
 <?php
 // Include the database configuration file  
 require_once './inc/db.php';
+require './inc/models/images.php';
 
 // Get image data from database 
-$result = $db->query("SELECT image FROM my_images ORDER BY uploaded DESC");
+$result =  Images::get_images($db);
 //print_r($result)
 ?>
 
