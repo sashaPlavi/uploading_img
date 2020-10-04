@@ -1,5 +1,6 @@
 <?php
 include_once './inc/db.php';
+include_once './inc/models/images.php';
 
 
 if (isset($_POST['submit'])) {
@@ -34,7 +35,9 @@ if (isset($_POST['submit'])) {
         // move_uploaded_file($fileTmpName, $fileDestination);
         // header("Location:index.php?uploadsucces");
 
-        $insert = $db->query("INSERT into my_images (image, uploaded) VALUES ('$imgContent', NOW())");
+        $insert = Images::set_images($db, $imgContent);
+
+        //$db->query("INSERT into my_images (image, uploaded) VALUES ('$imgContent', NOW())");
 
         if ($insert) {
           $status = 'success';
